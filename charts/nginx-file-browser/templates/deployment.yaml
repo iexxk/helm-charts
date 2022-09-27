@@ -63,3 +63,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: {{ include "nginx.fullname" . }}
+        name: config      
