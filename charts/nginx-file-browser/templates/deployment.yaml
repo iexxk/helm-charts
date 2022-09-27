@@ -51,6 +51,11 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ include "nginx-file-browser.fullname" . }}
+          name: config              
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -63,8 +68,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: {{ include "nginx.fullname" . }}
-        name: config      
+
