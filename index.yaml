@@ -3,6 +3,16 @@ entries:
   nginx-file-browser:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-09-28T07:15:36.660722262Z"
+    description: A Helm chart for Kubernetes
+    digest: b6a35c6483b16b0d3ed73978b3b062a560460e1aa12d1ec6d3964207e99d2ff8
+    name: nginx-file-browser
+    type: application
+    urls:
+    - https://github.com/iexxk/helm-charts/releases/download/nginx-file-browser-0.1.12/nginx-file-browser-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-09-28T06:53:52.584735327Z"
     description: A Helm chart for Kubernetes
     digest: eb1bb076f5133d7d86c4aeb4b89ba3609e09dbbd079bddd4bce0384d2a247b3d
