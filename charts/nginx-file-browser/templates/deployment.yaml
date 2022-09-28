@@ -28,7 +28,7 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: config
               subPath: nginx.conf
-            {{- if not .Values.nfs.enabled }}    
+            {{- if .Values.nfs.enabled }}    
             - mountPath: /home
               name: nfs-data  
             {{- end }}              
@@ -47,7 +47,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        {{- if not .Values.nfs.enabled }} 
+        {{- if .Values.nfs.enabled }} 
         - name: nfs-data
           nfs:
             path:  {{ .Values.nfs.path }}
