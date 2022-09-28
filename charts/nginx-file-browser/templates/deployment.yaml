@@ -28,8 +28,10 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: config
               subPath: nginx.conf
+            {{- if not .Values.nfs.enabled }}    
             - mountPath: /home
-              name: dump-data              
+              name: nfs-data  
+            {{- end }}              
           ports:
             - name: http
               containerPort: 80
@@ -45,9 +47,12 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: dump-data
-          persistentVolumeClaim:
-            claimName: {{ include "nginx-file-browser.fullname" . }}  
+        {{- if not .Values.nfs.enabled }} 
+        - name: nfs-data
+          nfs:
+            path:  {{ .Values.nfs.path }}
+            server: {{ .Values.nfs.server }}
+        {{- end }}        
         - configMap:
             defaultMode: 420
             name: {{ include "nginx-file-browser.fullname" . }}

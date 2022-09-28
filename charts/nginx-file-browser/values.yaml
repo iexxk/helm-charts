@@ -17,6 +17,11 @@ service:
   port: 80
   nodePort: 00000
 
+nfs:
+  enabled: false
+  path: /mnt/data  #nfs挂载目录
+  server:  127.0.0.1 #nfs共享目录ip地址
+
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
