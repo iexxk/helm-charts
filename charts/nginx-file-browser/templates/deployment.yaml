@@ -28,6 +28,8 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: config
               subPath: nginx.conf
+            - mountPath: /home
+              name: dump-data              
           ports:
             - name: http
               containerPort: 80
@@ -43,6 +45,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        - name: dump-data
+          persistentVolumeClaim:
+            claimName: {{ include "nginx-file-browser.fullname" . }}  
         - configMap:
             defaultMode: 420
             name: {{ include "nginx-file-browser.fullname" . }}
