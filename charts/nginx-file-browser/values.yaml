@@ -15,7 +15,7 @@ podAnnotations: {}  #pod元数据
 service:
   type: NodePort
   port: 80
-  nodePort: 00000
+  nodePort: 30033
 
 nfs:
   enabled: false

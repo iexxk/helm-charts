@@ -28,10 +28,12 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: config
               subPath: nginx.conf
+            - mountPath: /etc/localtime
+              name: tz-config              
             {{- if .Values.nfs.enabled }}    
             - mountPath: /home
               name: nfs-data  
-            {{- end }}              
+            {{- end }}           
           ports:
             - name: http
               containerPort: 80
@@ -47,6 +49,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        - name: tz-config
+          hostPath:
+             path: /etc/localtime
         {{- if .Values.nfs.enabled }} 
         - name: nfs-data
           nfs:
