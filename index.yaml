@@ -141,4 +141,15 @@ entries:
     urls:
     - https://github.com/iexxk/helm-charts/releases/download/nginx-file-browser-0.1.1/nginx-file-browser-0.1.1.tgz
     version: 0.1.1
+  springboot-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-10-17T07:58:01.108933385Z"
+    description: A Helm chart for Kubernetes
+    digest: 2fc9dcfb968194814756bfbea6790f94693a6ae23341282f7324db8383f8db09
+    name: springboot-app
+    type: application
+    urls:
+    - https://github.com/iexxk/helm-charts/releases/download/springboot-app-0.1.0/springboot-app-0.1.0.tgz
+    version: 0.1.0
 generated: "2022-09-26T09:02:48.271407337Z"
