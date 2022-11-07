@@ -36,9 +36,6 @@ Common labels
 {{- define "springboot-app.labels" -}}
 helm.sh/chart: {{ include "springboot-app.chart" . }}
 {{ include "springboot-app.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
