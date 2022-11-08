@@ -23,9 +23,14 @@ jobs:
         uses: helm/chart-releaser-action@v1.4.1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"  
-      - name: update file
+      - name: github fast
         run: |
           git status
           ls
           git checkout gh-pages
           ls
+          sed -i "s/github.com/download.fastgit.org/g" index.yaml
+          cat index.yaml
+          git add .
+          git commit -m "update url"
+          git push
