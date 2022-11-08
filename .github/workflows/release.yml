@@ -25,5 +25,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"  
       - name: update file
         run: |
+          git status
+          ls
           git checkout gh-pages
           ls
