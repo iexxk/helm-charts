@@ -30,6 +30,6 @@ jobs:
           git pull
           ls
           sed -i "s/github.com/download.fastgit.org/g" index.yaml
-          git add .
+          git add index.yaml
           git commit -m "update url"
           git push
