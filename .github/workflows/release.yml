@@ -27,6 +27,7 @@ jobs:
         run: |
           git status
           git checkout gh-pages
+          git pull
           ls
           sed -i "s/github.com/download.fastgit.org/g" index.yaml
           git add .
