@@ -21,14 +21,31 @@ spec:
       serviceAccountName: {{ include "springboot-app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: sidecar
+          image: apache/skywalking-base:8.1.0-es7 # 容器镜像，包含静态资源文件
+          imagePullPolicy: IfNotPresent
+          command: ["cp", "-r", "/skywalking/agent", "/sidecar"]
+          volumeMounts:
+            - name: sidecar
+              mountPath: /sidecar        
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: JAVA_OPTS
+              value: -javaagent:/sidecar/agent/skywalking-agent.jar
+            - name: SW_AGENT_NAME
+              value: {{ include "springboot-app.fullname" . }} #服务名
+            - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+              value: "{{.Values.skyWalking.oap}}" # skywalk oap 后端服务
           ports:
             - containerPort: {{ .Values.containerPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-
+      volumes:
+        - name: sidecar  #共享agent文件夹
+          emptyDir: {}

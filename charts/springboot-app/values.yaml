@@ -16,6 +16,10 @@ fullnameOverride: ""
 #服务内部端口
 containerPort: 8080
 
+# skywalking oap 后端服务地址
+skyWalking:
+  oap: skywalking-oap.skywalking:11800
+
 podSecurityContext: {}
   # fsGroup: 2000
 
