@@ -46,6 +46,9 @@ spec:
             - containerPort: {{ .Values.containerPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: sidecar
+              mountPath: /sidecar            
       volumes:
         - name: sidecar  #共享agent文件夹
           emptyDir: {}
