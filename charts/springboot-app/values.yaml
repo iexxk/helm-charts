@@ -13,8 +13,8 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
-#服务内部端口
-containerPort: 8080
+#容器内部端口，根据镜像里面的进程的实际端口进行设置
+containerPort: 80
 
 # skywalking oap 后端服务地址
 skyWalking:
@@ -42,8 +42,9 @@ resources: {}
 
 # ----------------------------service.yaml---------------------------------
 service:
-  type: ClusterIP
-  port: 80
+  type: ClusterIP #type可选ClusterIP、NodePort
+  port: 80 #服务端口
+  nodePort: 0 #0为随机设置nodeport，非0为设置值的端口
 # ----------------------------serviceaccount.yaml------------------------
 serviceAccount:
   # Specifies whether a service account should be created
