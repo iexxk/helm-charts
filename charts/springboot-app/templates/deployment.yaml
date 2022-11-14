@@ -23,7 +23,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: sidecar
-          image: apache/skywalking-base:8.1.0-es7 # 容器镜像，包含静态资源文件
+          image: apache/skywalking-java-agent:8.13.0-java8 # 容器镜像，包含静态资源文件
           imagePullPolicy: IfNotPresent
           command: ["cp", "-r", "/skywalking/agent", "/sidecar"]
           volumeMounts:
