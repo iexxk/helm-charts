@@ -1,0 +1,17 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    {{- include "springboot-app.labels" . | nindent 4 }}
+  name: {{ include "springboot-app.fullname" . }}
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ include "springboot-app.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+      host: {{ include "name" . }}.{{ include "namespace" . }}.10.255.247.12.nip.io    
+{{- end }}  
