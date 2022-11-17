@@ -13,5 +13,5 @@ spec:
             backend:
               serviceName: {{ include "springboot-app.fullname" . }}
               servicePort: {{ .Values.service.port }}
-      host: {{ .Chart.Name }}.{{ include "namespace" . }}.10.255.247.12.nip.io    
+      host: {{ include "name" . }}.{{ include "namespace" . }}.10.255.247.12.nip.io    
 {{- end }}  

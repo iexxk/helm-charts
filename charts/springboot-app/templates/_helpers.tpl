@@ -1,3 +1,15 @@
+{{/* 资源名字 */}}
+{{- define "name" -}}
+{{ .Release.Name }}
+{{- end -}}
+
+{{/* 资源命名空间 */}}
+{{- define "namespace" -}}
+{{ .Release.Namespace }}
+{{- end -}}
+
+
+
 {{/*
 Expand the name of the chart.
 */}}
