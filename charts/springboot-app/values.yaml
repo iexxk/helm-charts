@@ -56,5 +56,5 @@ serviceAccount:
   name: ""
 # --------------------------ingress.yaml-----------------------------------
 ingress:
-  enabled: true #服务类型service.type=ClusterIP才会生效
+  enabled: false #服务类型service.type=ClusterIP才会生效
   nodeHost: 10.255.247.12 #节点ip，用与ingress的dns泛域名生成

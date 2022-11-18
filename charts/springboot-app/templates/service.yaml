@@ -4,6 +4,8 @@ metadata:
   name: {{ include "springboot-app.fullname" . }}
   labels:
     {{- include "springboot-app.labels" . | nindent 4 }}
+  annotations:
+    servicemesh.kubesphere.io/enabled: 'true'  
 spec:
   type: {{ .Values.service.type }}
   ports:
