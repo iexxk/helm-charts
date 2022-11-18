@@ -12,7 +12,6 @@ spec:
     matchLabels:
       {{- include "springboot-app.selectorLabels" . | nindent 6 }}
   addOwnerRef: true
-  descriptor:
   componentKinds:
     - group: ''
       kind: Service
