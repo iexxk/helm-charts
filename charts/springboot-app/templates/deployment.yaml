@@ -38,6 +38,7 @@ spec:
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            {{- range $key,$val := .Values.env }}
             {{- if .Values.skyWalking.enable }} 
             - name: JAVA_OPTS
               value: -javaagent:/sidecar/agent/skywalking-agent.jar
