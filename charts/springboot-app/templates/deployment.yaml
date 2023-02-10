@@ -14,7 +14,9 @@ spec:
       labels:
         {{- include "springboot-app.selectorLabels" . | nindent 8 }}
       annotations:
-        sidecar.istio.io/inject: '{{.Values.mesh.enable}}'  
+        {{- if .Values.mesh.enable }}
+        sidecar.istio.io/inject: 'true'
+        {{- end }}  
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
