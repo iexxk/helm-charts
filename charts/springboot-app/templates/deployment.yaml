@@ -57,7 +57,7 @@ spec:
             - name: dubbo
               containerPort: {{ .Values.dubbo.port }}
               protocol: TCP
-             {{- end }}    
+            {{- end }}    
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.skyWalking.enable }}    
