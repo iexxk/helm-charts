@@ -11,10 +11,20 @@ image:
 imagePullSecrets: 
   - name: harbor
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "" #复写应用名
 
 #容器内部端口，根据镜像里面的进程的实际端口进行设置
-containerPort: 80
+web:
+  port: 80
+
+#dubbo功能
+dubbo:
+  enable: true
+  port:  50052 #对应dubbo.protocol.port
+
+#mesh功能
+mesh:
+  enable: true  
 
 # skywalking oap 后端服务地址
 skyWalking:

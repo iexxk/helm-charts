@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         {{- include "springboot-app.selectorLabels" . | nindent 8 }}
+      annotations:
+        sidecar.istio.io/inject: {{.Values.mesh.enable}}    
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -48,7 +50,14 @@ spec:
               value: "{{.Values.skyWalking.oap}}" # skywalk oap 后端服务
             {{- end }}  
           ports:
-            - containerPort: {{ .Values.containerPort }}
+            - name: http-web
+              containerPort: {{ .Values.web.port }}
+              protocol: TCP
+            {{- if .Values.dubbo.enable }}   
+            - name: dubbo
+              containerPort: {{ .Values.dubbo.port }}
+              protocol: TCP
+             {{- end }}    
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.skyWalking.enable }}    
