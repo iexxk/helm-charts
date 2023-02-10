@@ -14,7 +14,7 @@ spec:
       labels:
         {{- include "springboot-app.selectorLabels" . | nindent 8 }}
       annotations:
-        sidecar.istio.io/inject: {{.Values.mesh.enable}}    
+        sidecar.istio.io/inject: '{{.Values.mesh.enable}}'  
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -69,4 +69,4 @@ spec:
       volumes:
         - name: sidecar  #共享agent文件夹
           emptyDir: {}
-      {{- end }}    
+      {{- end }}
