@@ -48,9 +48,7 @@ spec:
               value: "{{.Values.skyWalking.oap}}" # skywalk oap 后端服务
             {{- end }}  
           ports:
-            - name: http-web
-              containerPort: {{ .Values.web.port }}
-              protocol: TCP  
+            - containerPort: {{ .Values.containerPort }} 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.skyWalking.enable }}    
