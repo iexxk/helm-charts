@@ -1,4 +1,4 @@
-{{- if eq .Values.service.type "ClusterIP" }}
+{{- if eq .Values.web.type "ClusterIP" }}
 {{- if .Values.ingress.enabled -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
