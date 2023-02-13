@@ -7,20 +7,20 @@ metadata:
   annotations:
     servicemesh.kubesphere.io/enabled: 'true'  
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.web.type }}
   ports:
-    - name: http-{{ .Values.service.port }}
-      port: {{ .Values.service.port }}
-      {{- if eq .Values.service.type "NodePort" }}
-      {{- if ne "0" (toString .Values.service.nodePort) }}
-      nodePort: {{ .Values.service.nodePort }}
+    - name: http-web
+      port: {{ .Values.web.port }}
+      {{- if eq .Values.web.type "NodePort" }}
+      {{- if ne "0" (toString .Values.web.nodePort) }}
+      nodePort: {{ .Values.web.nodePort }}
       {{- end }}
       {{- end }}
   selector:
     {{- include "springboot-app.selectorLabels" . | nindent 4 }}
 --- 
 
-{{- if .Values.dubboservice.enable }}
+{{- if .Values.dubbo.enable }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,15 +31,15 @@ metadata:
   annotations:
     "helm.sh/hook": pre-install, pre-upgrade
 spec:
-  type: {{ .Values.dubboservice.type }}
+  type: {{ .Values.dubbo.type }}
   ports:
-    - name: http-{{ .Values.dubboservice.port }}
-      port: {{ .Values.dubboservice.port }}
-      targetPort: {{ .Values.dubboservice.port }}
+    - name: http-dubbo
+      port: {{ .Values.dubbo.port }}
+      targetPort: {{ .Values.dubbo.port }}
       protocol: TCP
-      {{- if eq .Values.dubboservice.type "NodePort" }}
-      {{- if ne "0" (toString .Values.dubboservice.nodePort) }}
-      nodePort: {{ .Values.dubboservice.nodePort }}
+      {{- if eq .Values.dubbo.type "NodePort" }}
+      {{- if ne "0" (toString .Values.dubbo.nodePort) }}
+      nodePort: {{ .Values.dubbo.nodePort }}
       {{- end }}
       {{- end }}
   sessionAffinity: None

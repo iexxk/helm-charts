@@ -15,12 +15,16 @@ fullnameOverride: "" #复写应用名
 
 #容器内部端口，根据镜像里面的进程的实际端口进行设置
 web:
-  port: 80
+  port: 80 #服务端口
+  type: ClusterIP #type可选ClusterIP、NodePort
+  nodePort: 0 #0为随机设置nodeport，非0为设置值的端口
 
 #dubbo功能
 dubbo:
   enable: true
   port:  50052 #对应dubbo.protocol.port
+  type: ClusterIP #type可选ClusterIP、NodePort
+  nodePort: 0 #0为随机设置nodeport，非0为设置值的端口
 
 #mesh功能
 mesh:
@@ -50,11 +54,6 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-# ----------------------------service.yaml---------------------------------
-service:
-  type: ClusterIP #type可选ClusterIP、NodePort
-  port: 80 #服务端口
-  nodePort: 0 #0为随机设置nodeport，非0为设置值的端口
 # ----------------------------serviceaccount.yaml------------------------
 serviceAccount:
   # Specifies whether a service account should be created
