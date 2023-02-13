@@ -144,6 +144,16 @@ entries:
   springboot-app:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-02-13T07:47:27.220903031Z"
+    description: A Helm chart for Kubernetes
+    digest: 7e88d6339c15484e6f8332339fb8a2ce9e8c6ac7265f80e32ecad8bc6a64183d
+    name: springboot-app
+    type: application
+    urls:
+    - https://github.com/iexxk/helm-charts/releases/download/springboot-app-0.3.9/springboot-app-0.3.9.tgz
+    version: 0.3.9
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-02-13T07:37:45.085400338Z"
     description: A Helm chart for Kubernetes
     digest: af5db9ef36f66bd335f74ac1859d03b07b971dda34a7799356563d7fa2960d24
@@ -492,4 +502,4 @@ entries:
     urls:
     - https://download.fastgit.org/iexxk/helm-charts/releases/download/springboot-app-0.1.0/springboot-app-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-13T07:37:45.085663542Z"
+generated: "2023-02-13T07:47:27.221222443Z"
