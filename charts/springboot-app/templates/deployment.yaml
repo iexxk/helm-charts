@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         {{- include "springboot-app.selectorLabels" . | nindent 8 }}
+      annotations:
+        {{- if .Values.mesh.enable }}
+        sidecar.istio.io/inject: 'true'
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -22,15 +26,15 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-      {{- if .Values.skyWalking.enable }}  
-        - name: sidecar
-          image: apache/skywalking-java-agent:8.13.0-java8 # 容器镜像，包含静态资源文件
-          imagePullPolicy: IfNotPresent
-          command: ["cp", "-r", "/skywalking/agent", "/sidecar"]
-          volumeMounts:
-            - name: sidecar
-              mountPath: /sidecar
-      {{- end }}             
+      {{- if .Values.skyWalking.enable }}
+      - name: sidecar
+        image: apache/skywalking-java-agent:8.13.0-java8 # 容器镜像，包含静态资源文件
+        imagePullPolicy: IfNotPresent
+        command: ["cp", "-r", "/skywalking/agent", "/sidecar"]
+        volumeMounts:
+          - name: sidecar
+            mountPath: /sidecar
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -38,25 +42,33 @@ spec:
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- range $key,$val := .Values.env }}
-            {{- if .Values.skyWalking.enable }} 
+            - name: APP_NAME
+              value: {{ include "springboot-app.fullname" . }}
+            {{- if .Values.skyWalking.enable }}
             - name: JAVA_OPTS
               value: -javaagent:/sidecar/agent/skywalking-agent.jar
             - name: SW_AGENT_NAME
               value: {{ include "springboot-app.fullname" . }} #服务名
             - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
               value: "{{.Values.skyWalking.oap}}" # skywalk oap 后端服务
-            {{- end }}  
+            {{- end }}
           ports:
-            - containerPort: {{ .Values.containerPort }} 
+            - name: http-web
+              containerPort: {{ .Values.web.port }}
+              protocol: TCP
+            {{- if .Values.dubbo.enable }}
+            - name: dubbo
+              containerPort: {{ .Values.dubbo.port }}
+              protocol: TCP
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.skyWalking.enable }}    
+          {{- if .Values.skyWalking.enable }}
           volumeMounts:
             - name: sidecar
               mountPath: /sidecar
           {{- end }}
-      {{- if .Values.skyWalking.enable }}                        
+      {{- if .Values.skyWalking.enable }}
       volumes:
         - name: sidecar  #共享agent文件夹
           emptyDir: {}
