@@ -27,7 +27,7 @@ metadata:
   name: {{ include "springboot-app.fullname" . }}-dubbo-provider
   namespace: {{ include "namespace" . }}
   labels:
-    {{- include "serviceLabels" . | nindent 4 }}
+    {{- include "springboot-app.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": pre-install, pre-upgrade
 spec:
@@ -44,6 +44,6 @@ spec:
       {{- end }}
   sessionAffinity: None
   selector:
-    {{- include "serviceLabels" . | nindent 4 }}
+    {{- include "springboot-app.labels" . | nindent 4 }}
 {{- end }}
 ---    
