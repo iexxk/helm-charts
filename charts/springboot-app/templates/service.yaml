@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "preName" . }}-dubbo-provider
+  name: {{ include "springboot-app.fullname" . }}-dubbo-provider
   namespace: {{ include "namespace" . }}
   labels:
     {{- include "serviceLabels" . | nindent 4 }}
