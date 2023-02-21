@@ -1,3 +1,4 @@
+{{- if .Values.web.enable }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -18,13 +19,14 @@ spec:
       {{- end }}
   selector:
     {{- include "springboot-app.selectorLabels" . | nindent 4 }}
+{{- end }}
 --- 
 
 {{- if .Values.dubbo.enable }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "springboot-app.fullname" . }}-dubbo-provider
+  name: {{ include "springboot-app.fullname" . }}-dubbo
   namespace: {{ include "namespace" . }}
   labels:
     {{- include "springboot-app.labels" . | nindent 4 }}

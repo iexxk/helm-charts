@@ -15,6 +15,7 @@ fullnameOverride: "" #复写应用名
 
 #容器内部端口，根据镜像里面的进程的实际端口进行设置
 web:
+  enable: true
   port: 80 #服务端口
   type: ClusterIP #type可选ClusterIP、NodePort
   nodePort: 0 #0为随机设置nodeport，非0为设置值的端口
