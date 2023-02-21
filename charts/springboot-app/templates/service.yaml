@@ -30,6 +30,7 @@ metadata:
   labels:
     {{- include "springboot-app.labels" . | nindent 4 }}
   annotations:
+    "helm.sh/hook": pre-install, pre-upgrade
     servicemesh.kubesphere.io/enabled: 'true'
 spec:
   type: {{ .Values.dubbo.type }}
