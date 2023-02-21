@@ -1,3 +1,4 @@
+{{- if .Values.web.enable }}
 {{- if eq .Values.web.type "ClusterIP" }}
 {{- if .Values.ingress.enabled -}}
 apiVersion: extensions/v1beta1
@@ -16,4 +17,5 @@ spec:
               servicePort: {{ .Values.web.port }}
       host: {{ include "name" . }}.{{ include "namespace" . }}.{{ .Values.ingress.nodeHost }}.nip.io    
 {{- end }}  
-{{- end }} 
+{{- end }}
+{{- end }}
