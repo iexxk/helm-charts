@@ -44,12 +44,12 @@ spec:
           env:
             - name: APP_NAME
               value: {{ include "springboot-app.fullname" . }}
-            {{- if .Values.dubbo.enable }}
-            - name: POD_NAMESPACE #dubbo需要
+            {{- if .Values.mesh.enable }}
+            - name: POD_NAMESPACE #dubbo mesh 需要
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            - name: dubbo.registry.address
+            - name: dubbo.registry.address #mesh关闭注册中心
               value: N/A
             {{- end }}
             {{- if .Values.skyWalking.enable }}
