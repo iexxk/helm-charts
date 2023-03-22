@@ -8,8 +8,6 @@
 {{ .Release.Namespace }}
 {{- end -}}
 
-
-
 {{/*
 Expand the name of the chart.
 */}}
