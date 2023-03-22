@@ -42,7 +42,7 @@ spec:
           image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: POD_NAMESPACE
+            - name: POD_NAMESPACE #dubbo需要
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
