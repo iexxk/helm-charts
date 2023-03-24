@@ -53,7 +53,7 @@ spec:
               value: N/A
             {{- end }}
             {{- if .Values.debug.enable }}
-            - name: CATALINA_OPTS
+            - name: JAVA_OPTS
               value: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
             {{- end }}
             {{- if .Values.skyWalking.enable }}
