@@ -29,7 +29,11 @@ dubbo:
 
 #mesh功能
 mesh:
-  enable: true  
+  enable: true
+
+#java远程debug功能
+debug:
+  enable: false
 
 # skywalking oap 后端服务地址
 skyWalking:

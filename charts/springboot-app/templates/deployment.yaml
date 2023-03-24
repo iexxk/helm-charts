@@ -52,6 +52,10 @@ spec:
             - name: dubbo.registry.address #mesh关闭注册中心
               value: N/A
             {{- end }}
+            {{- if .Values.debug.enable }}
+            - name: CATALINA_OPTS
+              value: -Xdebug -Xrunjdwp:transport=dt_socket,address=5005,suspend=n,server=y
+            {{- end }}
             {{- if .Values.skyWalking.enable }}
             - name: JAVA_OPTS
               value: -javaagent:/sidecar/agent/skywalking-agent.jar
@@ -67,6 +71,11 @@ spec:
             {{- if .Values.dubbo.enable }}
             - name: dubbo
               containerPort: {{ .Values.dubbo.port }}
+              protocol: TCP
+            {{- end }}
+            {{- if .Values.debug.enable }}
+            - name: remote-debug
+              containerPort: 5005
               protocol: TCP
             {{- end }}
           resources:
