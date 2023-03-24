@@ -54,7 +54,7 @@ spec:
             {{- end }}
             {{- if .Values.debug.enable }}
             - name: CATALINA_OPTS
-              value: -Xdebug -Xrunjdwp:transport=dt_socket,address=5005,suspend=n,server=y
+              value: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
             {{- end }}
             {{- if .Values.skyWalking.enable }}
             - name: JAVA_OPTS
