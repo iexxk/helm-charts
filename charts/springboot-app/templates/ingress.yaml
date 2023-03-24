@@ -13,7 +13,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ include "springboot-app.fullname" . }}
+              serviceName: {{ include "springboot-app.fullname" . }}-web
               servicePort: {{ .Values.web.port }}
       host: {{ include "name" . }}.{{ include "namespace" . }}.{{ .Values.ingress.nodeHost }}.nip.io    
 {{- end }}  
