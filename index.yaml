@@ -150,7 +150,7 @@ entries:
     name: springboot-app
     type: application
     urls:
-    - https://github.com/iexxk/helm-charts/releases/download/springboot-app-0.3.29/springboot-app-0.3.29.tgz
+    - https://download.fastgit.org/iexxk/helm-charts/releases/download/springboot-app-0.3.29/springboot-app-0.3.29.tgz
     version: 0.3.29
   - apiVersion: v2
     appVersion: 1.16.0
