@@ -63,10 +63,10 @@ spec:
   type: NodePort
   ports:
     - name: http-debug
-      port: 5005
-      targetPort: 5005
+      port:  {{- if .Values.debug.port }}
+      targetPort: {{- if .Values.debug.port }}
       protocol: TCP
-      nodePort: 0
+      nodePort: {{- if .Values.debug.port }}
   selector:
     {{- include "springboot-app.selectorLabels" . | nindent 4 }}
 {{- end }}

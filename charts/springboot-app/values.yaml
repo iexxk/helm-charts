@@ -34,6 +34,8 @@ mesh:
 #java远程debug功能
 debug:
   enable: false
+  port: 5005
+  opts: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
 
 # skywalking oap 后端服务地址
 skyWalking:

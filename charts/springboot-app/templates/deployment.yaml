@@ -54,7 +54,7 @@ spec:
             {{- end }}
             {{- if .Values.debug.enable }}
             - name: DEBUG_OPTS
-              value: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+              value:  {{- if .Values.debug.opts }}
             {{- end }}
             {{- if .Values.skyWalking.enable }}
             - name: JAVA_OPTS
@@ -75,7 +75,7 @@ spec:
             {{- end }}
             {{- if .Values.debug.enable }}
             - name: remote-debug
-              containerPort: 5005
+              containerPort: {{ .Values.debug.port }}
               protocol: TCP
             {{- end }}
           resources:
