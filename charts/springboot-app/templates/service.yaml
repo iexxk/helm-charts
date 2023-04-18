@@ -63,10 +63,10 @@ spec:
   type: NodePort
   ports:
     - name: http-debug
-      port:  {{- if .Values.debug.port }}
-      targetPort: {{- if .Values.debug.port }}
+      port:  {{ .Values.debug.port }}
+      targetPort: {{ .Values.debug.port }}
       protocol: TCP
-      nodePort: {{- if .Values.debug.port }}
+      nodePort: {{ .Values.debug.port }}
   selector:
     {{- include "springboot-app.selectorLabels" . | nindent 4 }}
 {{- end }}
