@@ -54,7 +54,7 @@ spec:
             {{- end }}
             {{- if .Values.debug.enable }}
             - name: DEBUG_OPTS
-              value:  {{- if .Values.debug.opts }}
+              value:  {{ .Values.debug.opts }}
             {{- end }}
             {{- if .Values.skyWalking.enable }}
             - name: JAVA_OPTS
