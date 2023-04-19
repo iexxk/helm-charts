@@ -75,8 +75,8 @@ spec:
             {{- end }}
             {{- if .Values.debug.enable }}
             - name: remote-debug
-              containerPort: {{ .Values.debug.port }}
-              protocol: TCP
+              containerPort: 5005
+              protocol: TCP,UDP
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

@@ -63,7 +63,7 @@ spec:
   type: NodePort
   ports:
     - name: http-debug
-      port:  {{ .Values.debug.port }}
+      port:  5005
       targetPort: {{ .Values.debug.port }}
       protocol: TCP
       nodePort: {{ .Values.debug.port }}
